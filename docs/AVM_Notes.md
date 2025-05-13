@@ -6,9 +6,12 @@ This avoids AVM Module owners from having to maintain multiple major release ver
 Modules SHOULD set defaults in input parameters/variables to align to high priority/impact/severity recommendations, where appropriate and applicable, in the following frameworks and resources:
 
 [Well-Architected Framework (WAF)](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework)
+
 [Reliability Hub](https://learn.microsoft.com/en-us/azure/reliability/overview-reliability-guidance)
 [Azure Proactive Resiliency Library (APRL)](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/welcome/)
+
 Only Product Group (PG) verified
+
 [Microsoft Defender for Cloud (MDFC)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/plan-multicloud-security-get-started)
 They SHOULD NOT align to these recommendations when it requires an external dependency/resource to be deployed and configured and then associated to the resources in the module.
 
