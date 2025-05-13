@@ -1,0 +1,1 @@
+1. Only the latest released version of a module MUST be supported. [ID SNFR12](https://azure.github.io/Azure-Verified-Modules/specs/bcp/ptn/#id-snfr12---category-contributionsupport---versions-supported)
