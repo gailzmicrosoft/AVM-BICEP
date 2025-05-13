@@ -7,11 +7,12 @@ This guide provides step-by-step instructions for using Git, Visual Studio Code,
 ## Table of Contents
 
 1. [Install Git](#install-git)
-2. [Clone the Repository](#clone-the-repository)
-3. [Create a New Branch](#create-a-new-branch)
-4. [Merging Changes to Main Branch](#merging-your-changes-to-main-branch)
-5. [Commonly Used Git Commands](#commonly-used-git-commands)
-6. [Best Practices](#best-practices)
+2. [Install Visual Studio Code](#install-visual-studio-code)
+3. [Clone the Repository](#clone-the-repository)
+4. [Create a New Branch](#create-a-new-branch)
+5. [Merging Changes to Main Branch](#merging-your-changes-to-main-branch)
+6. [Commonly Used Git Commands](#commonly-used-git-commands)
+7. [Best Practices](#best-practices)
 
 ---
 
@@ -20,10 +21,24 @@ This guide provides step-by-step instructions for using Git, Visual Studio Code,
 From a PowerShell terminal, check if you have `git` installed on your local machine:
 
 ```sh
+# Check Git version
 git --version
 ```
 
 If `git` is installed, this command will display the installed version. If it is not installed, download and install it from this site: [Git - Downloads (git-scm.com)](https://git-scm.com/downloads).
+
+---
+
+## Install Visual Studio Code
+
+Visual Studio Code is a lightweight and powerful code editor. Follow these steps to install it:
+
+1. Visit the [Visual Studio Code Download Page](https://code.visualstudio.com/Download).
+2. Download the installer for your operating system (Windows, macOS, or Linux).
+3. Run the installer and follow the on-screen instructions to complete the installation.
+4. Once installed, open Visual Studio Code and install the Git extension for better integration:
+   - Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window.
+   - Search for "Git" and click **Install** on the Git extension by Microsoft.
 
 ---
 
@@ -36,9 +51,12 @@ If `git` is installed, this command will display the installed version. If it is
    - Go to the **Repos** section.
    - Click on **Clone** and copy the URL.
 5. Clone the repository to your local machine:
+
    ```sh
+   # Clone the repository
    git clone <repository-url>
    ```
+
    Replace `<repository-url>` with the URL you copied.
 
 ---
@@ -46,15 +64,21 @@ If `git` is installed, this command will display the installed version. If it is
 ## Create a New Branch
 
 1. Navigate to the repository directory:
+
    ```sh
+   # Change directory to the repository
    cd <repository-directory>
    ```
+
    Replace `<repository-directory>` with the path to your cloned repository.
 
 2. Create and switch to a new branch:
+
    ```sh
+   # Create and switch to a new branch
    git checkout -b <branch-name>
    ```
+
    Replace `<branch-name>` with your desired branch name.
 
 Now you are working on your own local branch.
@@ -66,32 +90,52 @@ Now you are working on your own local branch.
 Merge changes from **remote** `main` to local `main`, and then to your branch:
 
 1. Fetch the latest changes from the remote repository:
+
    ```sh
-   git fetch origin
+   # Fetch changes from remote
+git fetch origin
    ```
+
 2. Switch to your local `main` branch:
+
    ```sh
-   git checkout main
+   # Switch to main branch
+git checkout main
    ```
+
 3. Pull the latest changes from the remote `main` branch:
+
    ```sh
-   git pull
+   # Pull latest changes
+git pull
    ```
+
 4. Switch to your branch:
+
    ```sh
-   git checkout <branch-name>
+   # Switch to your branch
+git checkout <branch-name>
    ```
+
 5. Merge the updated `main` branch into your branch:
+
    ```sh
-   git merge main
+   # Merge main into your branch
+git merge main
    ```
+
 6. Resolve any merge conflicts if they arise. Visual Studio Code will highlight conflicts and provide tools to help you resolve them.
 7. Commit the merge if there were conflicts that you resolved:
+
    ```sh
-   git commit -m "Merged main into <branch-name>"
+   # Commit merge changes
+git commit -m "Merged main into <branch-name>"
    ```
+
 8. Push your changes to the remote repository:
+
    ```sh
+   # Push changes to remote
    git push origin <branch-name>
    ```
 
@@ -100,27 +144,44 @@ Merge changes from **remote** `main` to local `main`, and then to your branch:
 ## Commonly Used Git Commands
 
 - Check the status of your repository:
+
   ```sh
-  git status
+  # Check repository status
+git status
   ```
+
 - Pull the latest changes:
+
   ```sh
-  git pull
+  # Pull changes
+git pull
   ```
+
 - Create a new branch:
+
   ```sh
-  git checkout -b <new-branch-name>
+  # Create a new branch
+git checkout -b <new-branch-name>
   ```
+
 - Switch to an existing branch:
+
   ```sh
-  git checkout <branch-name>
+  # Switch branches
+git checkout <branch-name>
   ```
+
 - Commit changes:
+
   ```sh
-  git commit -m "Your commit message"
+  # Commit changes
+git commit -m "Your commit message"
   ```
+
 - Push changes to the remote repository:
+
   ```sh
+  # Push changes
   git push
   ```
 
@@ -128,7 +189,7 @@ Merge changes from **remote** `main` to local `main`, and then to your branch:
 
 ## Best Practices
 
-**Sync Your Local Branch with Remote Periodically**
+### Sync Your Local Branch with Remote Periodically
 
 It is a best practice to periodically push updates to the remote branch to ensure your changes are backed up and to integrate updates from your team.
 
@@ -140,7 +201,7 @@ git pull origin <branch-name>
 git push origin <branch-name>
 ```
 
-**Delete Local Branch After Merging**
+### Delete Local Branch After Merging
 
 Once your pull request is complete and merged, delete your local branch to keep your workspace clean:
 
@@ -155,7 +216,7 @@ git pull origin main
 git branch -d <branch-name>
 ```
 
-**Reuse Branch Names (Optional, not Recommended)**
+### Reuse Branch Names (Optional, not Recommended)
 
 If you prefer to reuse branch names, you can clean up the remote and local branches properly before recreating them:
 
