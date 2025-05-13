@@ -1,6 +1,6 @@
-# Git, Visual Studio Code, and Azure DevOps Repo Basics
+## Git and Visual Studio Code Basics
 
-This guide provides step-by-step instructions for using Git, Visual Studio Code, and Azure DevOps repositories. It covers installation, repository management, branching, merging, and best practices for collaboration.
+This guide provides step-by-step instructions for using Git, Visual Studio Code, and Azure DevOps or GitHub Repositories. It covers installation, repository management, branching, merging, and best practices for collaboration.
 
 ---
 
