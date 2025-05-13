@@ -82,6 +82,52 @@ Validate your deployment to ensure everything is configured correctly:
 az deployment group validate --resource-group <resource-group-name> --template-file <path-to-main-bicep-file> --parameters <path-to-parameters-file>
 ```
 
+## Referencing AVM Modules in Bicep
+
+To use Azure Verified Modules (AVMs) in your Bicep templates, you need to reference them explicitly. Below are examples of how AVMs are referenced in the `main.bicep` file for deploying Azure Storage, Azure PostgreSQL, and Azure Container Apps.
+
+### Azure Storage Module
+
+```bicep
+module storageAccount 'br/public:avm/ptn/storage/storage-account:1.3.0' = {
+  name: 'storageAccountDeployment'
+  params: {
+    name: storageAccountName
+    location: location
+    sku: 'Standard_LRS'
+    kind: 'StorageV2'
+    allowBlobPublicAccess: false
+    allowSharedKeyAccess: false
+    minimumTlsVersion: 'TLS1_2'
+    publicNetworkAccess: 'Disabled'
+  }
+}
+```
+
+### Azure PostgreSQL Module
+
+```bicep
+module postgreSqlServer 'br/public:avm/ptn/database/postgresql-server:1.4.0' = {
+  name: 'postgreSqlServerDeployment'
+  params: {
+    name: postgreSqlServerName
+    location: location
+    sku: {
+      name: 'GP_Gen5_2'
+      tier: 'GeneralPurpose'
+      capacity: 2
+      family: 'Gen5'
+    }
+    administratorLogin: 'adminUser'
+    administratorLoginPassword: 'securePassword123!'
+    sslEnforcement: 'Enabled'
+    publicNetworkAccess: 'Disabled'
+  }
+}
+```
+
+These module references ensure that your Bicep templates are aligned with Azure's best practices and leverage the power of AVMs for efficient and standardized deployments.
+
 ## Best Practices for AVM Bicep Implementation
 
 - **Use Parameters**: Make your modules flexible by defining parameters.
