@@ -34,6 +34,8 @@ Before you start implementing AVM with Bicep, ensure you have the following:
 
 ## Getting Started with AVM Bicep Implementation
 
+Please refer to official guide on [Bicep Quickstart Guide | AVM](https://azure.github.io/Azure-Verified-Modules/usage/quickstart/bicep/) on how to get started. 
+
 ### 1. Understand the AVM Structure
 
 AVM modules are designed to be modular and reusable. Each module typically includes:

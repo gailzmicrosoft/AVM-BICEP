@@ -1,71 +1,26 @@
-// Main Bicep file to deploy Azure Storage, Azure PostgreSQL, and Azure Container Apps
-// using Azure Verified Modules (AVMs) aligned with the Azure Well-Architected Framework (WAF).
+// Resoure modules for Azure Container Apps and Storage Account
 
-// Parameters
-param location string = resourceGroup().location
-param storageAccountName string
-param postgreSqlServerName string
-param containerAppName string
+// need WAF aligned storage account 
 
-// Azure Storage Module
-module storageAccount 'br/public:avm/ptn/storage/storage-account:1.3.0' = {
-  name: 'storageAccountDeployment'
+module myStorageAccount 'br/public:avm/res/storage/storage-account:0.20.0' = {
+  name: 'myStorageAccount'
   params: {
-    name: storageAccountName
-    location: location
-    sku: 'Standard_LRS'
+    name: 'mystorageaccount'
+    location: 'eastus'
     kind: 'StorageV2'
-    allowBlobPublicAccess: false
-    allowSharedKeyAccess: false
-    minimumTlsVersion: 'TLS1_2'
-    publicNetworkAccess: 'Disabled'
+    skuName:'Standard_LRS'
+    accessTier: 'Hot'
+    allowBlobPublicAccess: false 
   }
 }
 
-// Azure PostgreSQL Module
-module postgreSqlServer 'br/public:avm/ptn/database/postgresql-server:1.4.0' = {
-  name: 'postgreSqlServerDeployment'
+module resourceRoleAssignment 'br/public:avm/ptn/authorization/resource-role-assignment:0.1.2' = {
+  name: 'resourceRoleAssignmentDeployment'
   params: {
-    name: postgreSqlServerName
-    location: location
-    sku: {
-      name: 'GP_Gen5_2'
-      tier: 'GeneralPurpose'
-      capacity: 2
-      family: 'Gen5'
-    }
-    administratorLogin: 'adminUser'
-    administratorLoginPassword: 'securePassword123!'
-    sslEnforcement: 'Enabled'
-    publicNetworkAccess: 'Disabled'
-  }
-}
-
-// Azure Container Apps Module
-module containerApp 'br/public:avm/ptn/compute/container-app:1.5.0' = {
-  name: 'containerAppDeployment'
-  params: {
-    name: containerAppName
-    location: location
-    managedEnvironmentId: '<container-app-environment-id>'
-    configuration: {
-      ingress: {
-        external: false
-        targetPort: 80
-        transport: 'Auto'
-      }
-    }
-    template: {
-      containers: [
-        {
-          name: 'app-container'
-          image: '<acr-name>.azurecr.io/<image-name>:<version>'
-          resources: {
-            cpu: 0.5
-            memory: '1Gi'
-          }
-        }
-      ]
-    }
+    principalId: '<principalId>'
+    resourceId: '<resourceId>'
+    roleDefinitionId: '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1'
+    description: 'Assign Storage Blob Data Reader role to the managed identity on the storage account.'
+    principalType: 'ServicePrincipal'
   }
 }
