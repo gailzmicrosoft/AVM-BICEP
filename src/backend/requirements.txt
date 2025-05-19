@@ -1,0 +1,45 @@
+# Base packages
+python-dotenv
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic[email]
+
+# Azure SDK Core
+azure-core
+requests
+aiohttp
+
+# Azure Services
+azure-identity
+azure-storage-blob
+azure-cosmos
+azure-servicebus
+azure-mgmt-storage
+azure-functions
+
+# Development tools
+pytest
+pytest-mock
+black
+pylint
+flake8
+flake8-docstrings
+flake8-import-order
+flake8-bugbear
+flake8-annotations
+
+# Additional utilities
+aiofiles
+structlog
+typing-extensions
+python-jose[cryptography]
+passlib[bcrypt]
+semantic-kernel[azure]==1.27.2
+openai
+sqlparse
+sqlglot
+unittest2
+json_utils
+starlette
+aiortc
